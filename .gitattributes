@@ -1,0 +1,9 @@
+# Files to ignore and not include when this project is installed as a library.
+docker-compose.yml  export-ignore
+/tests              export-ignore
+/build              export-ignore
+/tmp                export-ignore
+/vendor             export-ignore
+
+# Configure diff output for .php and .phar files.
+*.php diff=php

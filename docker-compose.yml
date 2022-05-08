@@ -1,0 +1,26 @@
+services:
+  php81:
+    build:
+      context: ./build
+      dockerfile: Dockerfile
+    working_dir: "/app"
+    volumes:
+      - .:/app
+
+  php80:
+    extends: php81
+    build:
+      args:
+        buildno: 8.0
+
+  php74:
+    extends: php81
+    build:
+      args:
+        buildno: 7.4
+
+  php73:
+    extends: php81
+    build:
+      args:
+        buildno: 7.3

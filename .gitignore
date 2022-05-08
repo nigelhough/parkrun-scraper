@@ -1,0 +1,35 @@
+# This is a library so should not commit the composer.lock
+# The dependencies should be as wide a range as possible to allow it compatability with as much software as possible.
+composer.lock
+
+# Dependencies.
+/vendor/
+
+# IDE Settings.
+/.idea/
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+*.code-workspace
+
+# Environment Variables.
+.env
+
+# OS Files.
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+Icon?
+ehthumbs.db
+Thumbs.db
+.htaccess
+
+# Log Files.
+*.log
+
+# Cache Files.
+*.cache

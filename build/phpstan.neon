@@ -1,0 +1,8 @@
+parameters:
+  checkMissingIterableValueType: false
+  level: 8
+  paths:
+    - ../src
+    - ../tests
+  bootstrapFiles:
+    - phpstan-bootstrap.php
