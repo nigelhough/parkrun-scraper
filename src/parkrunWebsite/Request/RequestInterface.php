@@ -7,5 +7,5 @@ namespace parkrunScraper\parkrunWebsite\Request;
  */
 interface RequestInterface
 {
-    public function makeRequest(string $location, string $event): string|\Stringable;
+    public function getEventSummary(string $location, string $event): string|\Stringable;
 }

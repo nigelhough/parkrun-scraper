@@ -1,9 +1,10 @@
+#!/usr/bin/env php
 <?php
 
 /**
  * A CLI interface to the parkrun Scraper.
  * Used for making manual requests during testing of the scraping library.
- * @todo Update to use a library like CLIMate.
+ * @todo Consider updating to use a library like CLIMate.
  */
 declare(strict_types=1);
 
@@ -15,12 +16,25 @@ $location = $options['l'] ?? 'miltonkeynes';
 $event = $options['e'] ?? 'latestresults';
 
 try {
-    // @todo Use the Interface and DI to abstract the implementation.
-    $request = new \parkrunScraper\parkrunWebsite\Request\GuzzleRequest();
-    $body = $request->makeRequest($location, $event);
-    echo substr((string) $body, 0, 200);
-} catch(\Throwable $e)
-{
+    $api = (new \parkrunScraper\Api\Factory())->create();
+
+    $summary = $api->getEventSummary($location, $event);
+    echo $summary->getEvent()->getLocation()->getName()
+        . ", event="
+        . $summary->getEvent()->getNumber()
+        . " on "
+        . $summary->getEvent()->getDate()->format('c')
+        . "\n";
+
+    foreach ($summary->getResults()->iterate() as $result) {
+        if ($result->getAthlete()->getId() === 960984) {
+            var_dump($result->getPosition());
+            var_dump($result->getAthlete()->getId());
+            var_dump($result->getAthlete()->getName());
+            var_dump((string) $result->getTime());
+        }
+    }
+} catch (\Throwable $e) {
     echo $e->getMessage();
     exit(1);
 }
